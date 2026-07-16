@@ -7,7 +7,8 @@ import { fileURLToPath } from "url"
 import { dirname } from "path"
 import admin from "./routes/admin.js"
 import { glob } from "fs"
-
+import session from "express-session"
+import flash from "connect-flash"
 
 const app = express()
 
@@ -17,6 +18,20 @@ const app = express()
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename)
 
+//Sessão
+app.use(session({
+    secret: "DG!12@$31dAS#Dasd2#13!@$wyegSDFsad!gaSDg34q]yeGGe@Afds",
+    resave: true,
+    saveUninitialized: true
+}))
+app.use(flash())
+
+//Middleware
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg")
+    res.locals.error_msg = req.flash("error_msg")
+    next()
+})
 
 //Body Parses
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -40,7 +55,6 @@ mongoose.connect("mongodb://localhost/blogapp")
 
 //Public
 app.use(express.static(path.join(__dirname, "public")))
-
 
 //Rotas
 app.use('/admin', admin)
