@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const CategoriaSchema = new Schema({
     nome: {
@@ -15,7 +15,7 @@ const CategoriaSchema = new Schema({
         type: Date,
         default: Date.now()
     }
-});
+})
 
 
-export default mongoose.model("categorias", CategoriaSchema);;
+export default mongoose.model("categorias", CategoriaSchema)
