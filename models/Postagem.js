@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Categoria from "./Categoria";
+import Categoria from "./Categoria.js";
 
 const Schema = mongoose.Schema
 
@@ -26,7 +26,7 @@ const PostagemSchema = new Schema({
         required: true
     },
 
-    data: {
+    date: {
         type: Date,
         default: Date.now()
     }

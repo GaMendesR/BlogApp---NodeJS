@@ -1,6 +1,6 @@
 <h2>Lista de Categorias: </h2>
 <hr>
-<a href="/admin/categorias/add"><button class="btn btn-primary">Nova Categoria</button></a>
+<a href="/admin/categorias/add" class="btn btn-primary">Nova Categoria</a>
 
 {{#each categorias}}
 <div class="card mt-4">
@@ -12,7 +12,7 @@
             <a href="/admin/categorias/edit/{{_id}}" class="btn btn-warning">Editar</a>
             <form action="/admin/categorias/deletar" method="POST" style="display: inline;">
                 <input type="hidden" name="id" value="{{_id}}">
-                <button type="submit" class="btn btn-danger ms-2" onclick="return confirm("Tem certeza que deseja remover essa categoria?")">Excluir</button>
+                <button type="submit" class="btn btn-danger ms-2">Excluir</button>
             </form>
         </div>
 

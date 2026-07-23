@@ -1,3 +1,15 @@
 <h2>Lista de Postagens</h2>
 <hr>
 <a href="/admin/postagens/add" class="btn btn-primary">Nova Postagem</a>
+
+{{#each postagens}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4>{{titulo}}</h4>
+        <small>Descrição: {{descricao}}</small><br>
+        <small>Data de Criação: {{date}}</small><br>
+    </div>
+</div>
+{{else}}
+<h4 class="mt-4 text-secondary">Não há Postagem Registada</h4>
+{{/each}}
