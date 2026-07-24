@@ -5,9 +5,19 @@
 {{#each postagens}}
 <div class="card mt-4">
     <div class="card-body">
-        <h4>{{titulo}}</h4>
-        <small>Descrição: {{descricao}}</small><br>
-        <small>Data de Criação: {{date}}</small><br>
+         <div class="d-flex align-items-center">
+            <h4 class="mb-0">{{titulo}}</h4>
+            <small class="ms-3 btn btn-dark btn-sm disabled">{{categoria.nome}}</small>
+        </div>
+        <p>Descrição: {{descricao}}</p>
+        <small>{{formatDate date}}</small>
+        <div class="mt-3">
+            <a href="/admin/postagens/edit/{{_id}}" class="btn btn-warning">Editar</a>
+            <form action="" method="" style="display: inline;">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger ms-2">Excluir</button>
+            </form>
+        </div>
     </div>
 </div>
 {{else}}

@@ -14,6 +14,7 @@ const app = express()
 
 //Configurações
 
+
 //Path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename)
@@ -43,8 +44,31 @@ app.engine("handlebars", engine({
     runtimeOptions: {
         allowProtoMethodsByDefault: true,
         allowProtoPropertiesByDefault: true
+    },
+    partialsDir: path.join(__dirname, "views/partials"),
+    helpers: {
+        formatDate: function (date) {
+            if (!date) return "Data não disponível";
+            const d = new Date(date);
+            return d.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            }) + ' | ' + d.toLocaleTimeString('pt-BR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        },
+
+        ifEquals: function (arg1, arg2, options) {
+            return String(arg1) === String(arg2)
+                ? options.fn(this)
+                : options.inverse(this);
+        }
+        
     }
 }))
+
 app.set("view engine", "handlebars");
 
 //Mongoose
